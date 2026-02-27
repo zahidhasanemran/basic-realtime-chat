@@ -95,7 +95,7 @@ npm install
 npm run dev
 ```
 
-Open `http://localhost:3000`.
+Open `https://basic-realtime-chat.vercel.app/`.
 
 ## Scripts
 
@@ -106,7 +106,7 @@ Open `http://localhost:3000`.
 
 ## Important Implementation Notes
 
-- `src/lib/client.ts` currently targets `http://localhost:3000` directly. For deployments, consider switching to a relative origin or environment-based API URL.
+- `src/lib/client.ts` currently targets `https://basic-realtime-chat.vercel.app/` directly. For deployments, consider switching to a relative origin or environment-based API URL.
 - `ROOM_EXPIRATION_TIME` is set to 10 minutes in `src/lib/constants.ts`.
 - `TOKEN_MAX_AGE` is 24 hours in `src/lib/constants.ts`.
 
