@@ -10,6 +10,8 @@
 !.yarn/releases
 !.yarn/versions
 
+FRONTEND_REVIEW_NOTES.md
+
 # testing
 /coverage
 
