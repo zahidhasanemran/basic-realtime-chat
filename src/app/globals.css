@@ -1,26 +1,77 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #071217;
+  --foreground: #e7f4f3;
+  --surface: rgba(13, 26, 33, 0.74);
+  --surface-strong: rgba(10, 20, 26, 0.92);
+  --border: rgba(146, 184, 186, 0.2);
+  --muted: #9db3b3;
+  --accent: #2de0b8;
+  --accent-strong: #00b997;
+  --danger: #ff6b72;
+  --font-size-body: 0.9375rem;
+  --line-height-body: 1.5rem;
+  --letter-spacing-body: 0rem;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-surface: var(--surface);
+  --color-surface-strong: var(--surface-strong);
+  --color-border: var(--border);
+  --color-muted: var(--muted);
+  --color-accent: var(--accent);
+  --color-accent-strong: var(--accent-strong);
+  --color-danger: var(--danger);
+  --text-body: var(--font-size-body);
+  --text-body--line-height: var(--line-height-body);
+  --tracking-body: var(--letter-spacing-body);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+body {
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at 12% 18%, rgba(45, 224, 184, 0.16), transparent 34%),
+    radial-gradient(circle at 86% 8%, rgba(67, 173, 255, 0.2), transparent 30%),
+    radial-gradient(circle at 52% 100%, rgba(0, 185, 151, 0.16), transparent 42%),
+    linear-gradient(160deg, #050d11, #0a161d 48%, #081017);
+  background-attachment: fixed;
+  color: var(--foreground);
+  font-family: var(--font-geist-sans), "IBM Plex Sans", sans-serif;
+  font-size: var(--font-size-body);
+  line-height: var(--line-height-body);
+  letter-spacing: var(--letter-spacing-body);
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+::selection {
+  background: rgba(45, 224, 184, 0.32);
+  color: #effef9;
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(45, 224, 184, 0.48) rgba(9, 20, 27, 0.42);
+}
+
+*::-webkit-scrollbar {
+  width: 0.55rem;
+}
+
+*::-webkit-scrollbar-track {
+  background: rgba(9, 20, 27, 0.42);
+}
+
+*::-webkit-scrollbar-thumb {
+  border-radius: 9999px;
+  border: 2px solid transparent;
+  background-clip: content-box;
+  background: rgba(45, 224, 184, 0.5);
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background: rgba(45, 224, 184, 0.75);
 }

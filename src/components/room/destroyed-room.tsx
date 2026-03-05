@@ -1,10 +1,9 @@
 
-
 const DestroyedRoom = () => {
   return (
-    <div className="bg-red-950/50 border border-red-900 p-4 text-center">
-      <p className="text-red-500 text-sm font-bold">ROOM DESTROYED</p>
-      <p className="text-zinc-500 text-xs mt-1">
+    <div className="rounded-2xl border border-danger/40 bg-danger/10 px-4 py-3 text-center backdrop-blur-md">
+      <p className="text-sm font-semibold tracking-[0.11rem] text-danger">ROOM DESTROYED</p>
+      <p className="mt-1 text-xs text-[#f5c6cb]">
         All messages were permanently deleted.
       </p>
     </div>

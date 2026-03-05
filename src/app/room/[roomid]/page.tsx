@@ -34,12 +34,14 @@ const SingleRoom = () => {
   })
 
   return (
-    <main className="flex flex-col h-screen max-h-screen overflow-hidden">
-      <GroupChatHeader roomId={roomId} handleCopy={handleCopy} copyStatus={copyStatus} timeRemaining={timeRemaining} destroyRoom={destroyRoom} />
-      <div className="flex-1 overflow-y-auto p-4 space-y-4 scrollbar-thin">
-        <MessageList messages={messages?.messages ?? []} username={username} />
+    <main className="mx-auto flex h-screen w-full max-w-6xl flex-col overflow-hidden px-3 py-3 sm:px-4 sm:py-4">
+      <div className="flex h-full flex-col overflow-hidden rounded-3xl border border-border bg-surface shadow-[0_30px_90px_-44px_rgba(0,0,0,0.98)] backdrop-blur-2xl">
+        <GroupChatHeader roomId={roomId} handleCopy={handleCopy} copyStatus={copyStatus} timeRemaining={timeRemaining} destroyRoom={destroyRoom} />
+        <div className="flex-1 overflow-y-auto px-3 py-4 sm:px-4">
+          <MessageList messages={messages?.messages ?? []} username={username} />
+        </div>
+        <GroupChatFooter input={input} inputRef={inputRef} handleSendMessage={handleSendMessage} isSending={isSending} setInput={setInput} />
       </div>
-      <GroupChatFooter input={input} inputRef={inputRef} handleSendMessage={handleSendMessage} isSending={isSending} setInput={setInput} />
     </main>
   )
 }

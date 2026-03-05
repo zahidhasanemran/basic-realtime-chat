@@ -19,30 +19,35 @@ const MessageList = ({ messages, username }: MessageListProps) => {
   }
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-3 pb-2">
       {messages.map((msg) => {
         const me = msg.sender === username
 
         return (
           <div
             key={msg.id}
-            className={`flex w-3/4 flex-col px-3 py-3 rounded ${me ? "items-end bg-amber-100 ml-auto" : "items-start bg-blue-100 mr-auto"}`}
+            className={`flex ${me ? "justify-end" : "justify-start"}`}
           >
-            <div className="max-w-[80%] group">
-              <div className="flex items-baseline gap-3 mb-1">
-                <span className={`text-xs font-bold ${me ? "text-green-500" : "text-blue-500"}`}>
-                  {me ? "YOU" : msg.sender}
+            <article
+              className={`max-w-[88%] rounded-2xl border px-3 py-2.5 sm:max-w-[75%] sm:px-4 sm:py-3 ${me
+                ? "border-accent/35 bg-accent/16"
+                : "border-border bg-surface-strong"
+                }`}
+            >
+              <div className="mb-1 flex items-baseline justify-between gap-3">
+                <span className={`truncate text-[0.6875rem] font-semibold uppercase tracking-[0.08rem] ${me ? "text-accent" : "text-[#8bd9ff]"}`}>
+                  {me ? "You" : msg.sender}
                 </span>
 
-                <span className="text-[10px] text-zinc-600">
+                <span className="text-[0.625rem] text-muted">
                   {format(msg.timestamp, "HH:mm")}
                 </span>
               </div>
 
-              <p className="text-sm text-black leading-relaxed break-all">
+              <p className="break-words text-sm leading-relaxed text-foreground">
                 {msg.text}
               </p>
-            </div>
+            </article>
           </div>
         )
       })}
