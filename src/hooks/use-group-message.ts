@@ -14,6 +14,7 @@ export const useGroupMessage = (roomId: string) => {
 
   const [input, setInput] = useState("")
   const [copyStatus, setCopyStatus] = useState<boolean>(false)
+  const [now, setNow] = useState<number>(0)
 
   const { username } = useUsername()
 
@@ -32,9 +33,11 @@ export const useGroupMessage = (roomId: string) => {
     inputRef.current?.focus()
   }
 
-  const { data: ttlData } = useQuery({
+  const { data: ttlData, dataUpdatedAt: ttlUpdatedAt } = useQuery({
     queryKey: ["ttl", roomId],
     enabled: !!roomId,
+    refetchInterval: 15000,
+    refetchIntervalInBackground: true,
     queryFn: async () => {
       const res = await client.rooms.ttl.get({ query: { roomId } })
       return res.data
@@ -70,7 +73,21 @@ export const useGroupMessage = (roomId: string) => {
     }
   })
 
-  const timeRemaining = ttlData?.ttl ?? null
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      setNow(Date.now())
+    }, 1000)
+
+    return () => {
+      clearInterval(intervalId)
+    }
+  }, [])
+
+  const effectiveNow = now === 0 ? ttlUpdatedAt : now
+
+  const timeRemaining = ttlData?.ttl === undefined
+    ? null
+    : Math.max(ttlData.ttl - Math.floor((effectiveNow - ttlUpdatedAt) / 1000), 0)
 
   useEffect(() => {
     if (timeRemaining === null) return
